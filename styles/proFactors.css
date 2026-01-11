@@ -1,0 +1,151 @@
+:root {
+  --blue-dark: #0e4c7a;
+  --blue: #1f77b4;
+  --gray-bg: #f3f5f7;
+  --card-bg: #ffffff;
+  --text-dark: #1f2937;
+  --text-muted: #6b7280;
+  --border-light: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--gray-bg);
+  color: var(--text-dark);
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  padding: 40px 60px 60px;
+  color: white;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.badge {
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.role {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.header h1 {
+  margin: 25px 0 8px;
+  font-size: 32px;
+}
+
+.header p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1300px;
+  margin: 40px auto 40px; /* espace clair sous le header */
+  padding: 0 24px;
+}
+
+
+/* CARD */
+.card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 28px; /* au lieu de 20px */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+
+.card-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* SELECT */
+select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  font-size: 14px;
+}
+
+/* SANKEY */
+svg {
+  display: block;
+  margin: auto;
+}
+
+.link {
+  fill: none;
+  stroke-opacity: 0.25;
+}
+
+.node rect {
+  rx: 6;
+  ry: 6;
+  fill-opacity: 0.9;
+}
+
+.node text {
+  font-size: 12px;
+  fill: #111;
+  pointer-events: none;
+}
+
+/* COLUMN HEADERS */
+.column-header.title {
+  font-size: 13px;
+  font-weight: 700;
+  fill: #111827;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.column-header.subtitle {
+  font-size: 11px;
+  fill: #6b7280;
+}
+
+/* HOVER EFFECTS */
+.link {
+  transition: stroke-opacity 0.2s;
+}
+
+.link.fade {
+  stroke-opacity: 0.05;
+}
+
+.node.fade rect {
+  fill-opacity: 0.2;
+}
+
+.node rect {
+  transition: fill-opacity 0.2s;
+}
+
+#chart {
+  margin-top: 12px;
+}
