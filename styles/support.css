@@ -1,0 +1,232 @@
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f2f4f7;
+  color: #101828;
+}
+
+/* ============================================================
+   HEADER APP
+   ============================================================ */
+.app-header {
+  background: linear-gradient(135deg, #0b4a7d, #1f78b4);
+  padding: 28px 40px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.header-left h1 {
+  margin: 8px 0 4px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.header-left p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Right label */
+.header-right {
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+.app-container {
+  max-width: 1200px;
+  margin: 32px auto 40px auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   CARD (UN SEUL CADRE)
+   ============================================================ */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px 32px 28px 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ============================================================
+   CARD HEADER (TITRE À GAUCHE / FILTRES À DROITE)
+   ============================================================ */
+.support-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.card-title-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.card .subtitle {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  color: #667085;
+}
+
+/* ============================================================
+   CONTROLS (À DROITE DU TITRE)
+   ============================================================ */
+.support-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.support-controls label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+}
+
+.support-controls select {
+  appearance: none;
+  border: 1px solid #d0d5dd;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ============================================================
+   CHART
+   ============================================================ */
+#chart {
+  margin-top: 8px;
+}
+
+/* Axes */
+.axis path,
+.axis line {
+  stroke: #d0d5dd;
+}
+
+.axis text {
+  font-size: 13px;
+  fill: #475467;
+}
+
+/* Bars */
+.bar-yes {
+  fill: #0b2a6f;
+}
+
+.bar-no {
+  fill: #cbe9ff;
+}
+
+/* Labels */
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.label-yes {
+  fill: #ffffff;
+}
+
+.label-no {
+  fill: #0b2a6f;
+}
+
+/* Hover states */
+.bar-dimmed {
+  opacity: 0.25;
+}
+
+.bar-active {
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+/* ============================================================
+   TOOLTIP
+   ============================================================ */
+.tooltip {
+  position: absolute;
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: #101828;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  min-width: 220px;
+  z-index: 9999;
+}
+
+.tooltip-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.tooltip-total {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .support-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .support-controls {
+    white-space: normal;
+  }
+}
