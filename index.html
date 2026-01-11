@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dashboard – Santé mentale</title>
+
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/map.css" />
+  <link rel="stylesheet" href="styles/dashboard.css" />
+  <link rel="stylesheet" href="styles/timeSeries.css" />
+  <link rel="stylesheet" href="styles/socialFactors.css" />
+  <link rel="stylesheet" href="styles/proFactors.css" />
+  <link rel="stylesheet" href="styles/support.css" />
+
+  <!-- NEW (heatmap) -->
+  <link rel="stylesheet" href="styles/heatmapRisk.css" />
+</head>
+
+<body>
+   <header class="dashboard-header">
+    <div>
+      <span class="badge">DataViz • Santé mentale</span>
+      <h1>Analyses mondiales sur la santé mentale</h1>
+
+      <nav class="dash-nav" aria-label="Navigation du tableau de bord">
+        <a class="dash-tab" href="#map" data-route="map">Carte (dashboard)</a>
+        <a class="dash-tab" href="#social" data-route="social">Facteurs sociaux</a>
+        <a class="dash-tab" href="#pro" data-route="pro">Facteurs professionnels</a>
+        <a class="dash-tab" href="#heatmap" data-route="heatmap">Matrice de risque</a>
+        <a class="dash-tab" href="#support" data-route="support">Support en santé mentale</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- PAGE 1: MAP DASHBOARD -->
+    <section id="page-map" class="dash-page is-active" data-page="map">
+      <section id="controls-panel" class="panel controls"></section>
+
+      <section class="main-grid">
+        <div class="panel map-panel">
+          <div class="map-header">
+            <div class="map-titleBlock">
+              <h2>Taux de suicide (par 100 000 hab.)</h2>
+              <p class="map-subtitle">
+                Vue comparative instantanée : identifie les zones à risque et compare les pays pour une population donnée.
+              </p>
+            </div>
+          </div>
+
+          <div class="map-insights">
+            <div class="kpi-grid" id="map-kpis">
+              <div class="kpi">
+                <div class="kpi-label">Valeur max</div>
+                <div class="kpi-value" id="kpi-max">—</div>
+                <div class="kpi-sub" id="kpi-max-country">—</div>
+              </div>
+
+              <div class="kpi">
+                <div class="kpi-label">Médiane</div>
+                <div class="kpi-value" id="kpi-median">—</div>
+                <div class="kpi-sub">tous pays avec données</div>
+              </div>
+
+              <div class="kpi">
+                <div class="kpi-label">Valeur min</div>
+                <div class="kpi-value" id="kpi-min">—</div>
+                <div class="kpi-sub" id="kpi-min-country">—</div>
+              </div>
+
+              <div class="kpi kpi-context">
+                <div class="kpi-label">Année</div>
+                <div class="kpi-value" id="kpi-year">—</div>
+                <div class="kpi-sub">filtre actif</div>
+              </div>
+
+              <div class="kpi kpi-context">
+                <div class="kpi-label">Sexe</div>
+                <div class="kpi-value" id="kpi-sex">—</div>
+                <div class="kpi-sub">filtre actif</div>
+              </div>
+
+              <div class="kpi kpi-context">
+                <div class="kpi-label">Âge</div>
+                <div class="kpi-value" id="kpi-age">—</div>
+                <div class="kpi-sub">filtre actif</div>
+              </div>
+            </div>
+
+            <div class="top3">
+              <div class="top3-title">Top 3 (plus élevés)</div>
+              <div id="top3-list" class="top3-list"></div>
+            </div>
+          </div>
+
+          <div class="map-layout">
+            <div id="map" class="map-canvas"></div>
+            <div id="tooltip" class="tooltip"></div>
+          </div>
+
+          <div class="legend-box">
+            <div class="legend-head">
+              <h3>Légende</h3>
+              <div class="legend-sub">Teinte foncée = taux plus élevé</div>
+            </div>
+            <svg id="legend-svg" width="320" height="120"></svg>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PAGE 2: SOCIAL FACTORS -->
+    <section id="page-social" class="dash-page" data-page="social" aria-hidden="true">
+      <div class="panel social-panel">
+        <div class="social-head">
+          <div>
+            <h2>Facteurs sociaux — Risk vs Protective</h2>
+          </div>
+        </div>
+
+        <div id="socialFactorsRoot"></div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: PROFESSIONAL FACTORS -->
+    <section id="page-pro" class="dash-page" data-page="pro" aria-hidden="true">
+      <div class="panel pro-panel">
+        <div class="pro-head">
+          <div>
+            <h2>Facteurs professionnels — Parcours vers burnout</h2>
+          </div>
+        </div>
+
+        <div id="proFactorsRoot"></div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: RISK MATRIX (HEATMAP) -->
+    <section id="page-heatmap" class="dash-page" data-page="heatmap" aria-hidden="true">
+      <div class="panel pro-panel">
+        <div class="pro-head">
+          <div>
+            <h2>Matrice de risque — Facteurs sociaux × professionnels</h2>
+          </div>
+        </div>
+
+        <!-- IMPORTANT: conteneur attendu par ton code heatmap -->
+        <div id="heatmapRoot"></div>
+      </div>
+    </section>
+
+    <!-- PAGE 5: MENTAL HEALTH SUPPORT -->
+    <section id="page-support" class="dash-page" data-page="support" aria-hidden="true">
+      <div class="panel pro-panel">
+        <div class="pro-head">
+          <div>
+            <h2>Mental Health Support par pays</h2>
+            <p class="map-subtitle">
+              Proportion d’employés ayant accès à un support en santé mentale (Yes / No).
+            </p>
+          </div>
+        </div>
+
+        <div id="supportRoot"></div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- MODAL (pour la MAP) -->
+  <div id="country-modal" class="mh-modal is-hidden" aria-hidden="true">
+    <div class="mh-modal__backdrop" data-close="true"></div>
+
+    <div class="mh-modal__card" role="dialog" aria-modal="true" aria-labelledby="mh-modal-title">
+      <div class="mh-modal__header">
+        <div>
+          <div class="mh-modal__kicker">Country details</div>
+          <h2 id="mh-modal-title" class="mh-modal__title">Pays</h2>
+          <p id="mh-modal-subtitle" class="mh-modal__subtitle">Cliquez sur un pays sur la carte</p>
+        </div>
+        <button id="mh-modal-close" class="mh-modal__close" aria-label="Fermer">✕</button>
+      </div>
+
+      <div class="mh-modal__body">
+        <section class="mh-modal__panel">
+          <div class="mh-panel-body">
+            <div id="timeseries"></div>
+          </div>
+        </section>
+
+        <section class="mh-modal__panel">
+          <div class="mh-panel-body">
+            <div id="chord"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    window.d3 = d3;
+  </script>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
