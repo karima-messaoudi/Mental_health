@@ -1,0 +1,79 @@
+/* styles/timeSeries.css */
+
+#timeseries{ min-height: 0; }
+#timeseries .ts-svg{ display:block; }
+
+.ts-grid line{ shape-rendering: crispEdges; }
+
+.ts-line{
+  fill:none;
+  stroke-width:3.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Male / Female styles (clean + contrast) */
+.ts-line-male{ stroke-width:4.0; }
+.ts-line-female{ stroke-width:4.0; opacity:0.95; }
+
+.ts-sel-year{
+  stroke: rgba(37,99,235,0.35);
+  stroke-width:2;
+  stroke-dasharray:6 6;
+}
+
+.ts-vline{
+  stroke: rgba(15,23,42,0.22);
+  stroke-width:1.5;
+  stroke-dasharray:3 5;
+}
+
+.axis-label{ font-size:12px; fill:#64748b; }
+.viz-legend-text{ font-size:12px; fill:#334155; font-weight:850; }
+
+/* KPI */
+.viz-insights{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:10px;
+  margin: 10px 0 10px;
+}
+
+.viz-kpi{
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.viz-kpi.kpi-strong{
+  border-color: rgba(15,23,42,0.14);
+  box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+}
+
+.viz-kpi-label{
+  font-size:11px;
+  font-weight:950;
+  color:#64748b;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.viz-kpi-value{
+  font-size:18px;
+  font-weight:950;
+  color:#0f172a;
+  margin-top:6px;
+  line-height:1.05;
+}
+
+.viz-kpi-sub{
+  font-size:12px;
+  color:#64748b;
+  margin-top:6px;
+  line-height:1.25;
+}
+
+@media (max-width: 720px){
+  .viz-insights{ grid-template-columns: 1fr; }
+}
