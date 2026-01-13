@@ -66,6 +66,10 @@ Mental health is a critical global public health issue with significant social, 
 
 https://github.com/karima-messaoudi/Mental_health/raw/main/static/Dashboard.mp4
 
+https://github.com/user-attachments/assets/ce459788-f580-4db0-a4e2-efda2ada812f
+
+
+
 ---
 
 ## Architecture
