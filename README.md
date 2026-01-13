@@ -64,9 +64,7 @@ Mental health is a critical global public health issue with significant social, 
 
 ## Dashboard Demonstration 
 
-<video src="static/Dashboard.mp4" controls muted width="100%">
-  Your browser does not support the video tag.
-</video>
+https://github.com/karima-messaoudi/Mental_health/raw/main/static/Dashboard.mp4
 
 ---
 
