@@ -331,3 +331,16 @@ svg text{ font-family: inherit; }
 #distSvg{
   margin-left: -35px;
 }
+
+/* ===== Heatmap axis titles ===== */
+.axisTitle {
+  font-size: 18px;
+  font-weight: 900;
+  fill: #334155;            /* gris foncé cohérent avec le thème */
+  letter-spacing: 0.2px;
+}
+
+/* Optionnel : rendre les labels d’axes un peu plus discrets */
+.axisTitle {
+  opacity: 0.85;
+}

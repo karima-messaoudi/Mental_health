@@ -94,9 +94,16 @@ export class HeatmapRiskView {
       const wrap = card.querySelector(".hmWrap");
 
       const inner = 320;
-      const pad = { top: 44, right: 44, bottom: 12, left: 86 };
+      // ⬇️ on garde la structure, mais on laisse un peu plus de marge en bas
+      // pour afficher le label de l’axe X
+      const pad = { top: 44, right: 44, bottom: 40, left: 108 };
       const W = inner + pad.left + pad.right;
       const H = inner + pad.top + pad.bottom;
+
+      // Nom des axes depuis le titre "Social × Pro"
+      const parts = String(hm.title).split("×");
+      const socialAxisName = (parts[0] || "").trim();
+      const proAxisName = (parts[1] || "").trim();
 
       const svg = d3.select(wrap)
         .append("svg")
@@ -118,6 +125,7 @@ export class HeatmapRiskView {
         .domain([vMin, mid, vMax])
         .range(["#ef8f8f", "#dfe6f2", "#4e86f7"]);
 
+      // Labels colonnes (Très faible..)
       const xLab = g.selectAll(".xLab")
         .data(labels)
         .enter()
@@ -139,6 +147,7 @@ export class HeatmapRiskView {
           .text((d) => d);
       });
 
+      // Labels lignes (Très faible..)
       const yLab = g.selectAll(".yLab")
         .data(labels)
         .enter()
@@ -159,6 +168,22 @@ export class HeatmapRiskView {
           .attr("dy", (_, li) => (li === 0 ? 0 : 12))
           .text((d) => d);
       });
+
+      // ✅ AJOUT : labels d’axes (Y social / X pro)
+      // Axe X (en bas, centré)
+      g.append("text")
+        .attr("class", "axisTitle")
+        .attr("x", inner / 2)
+        .attr("y", inner + 30)
+        .attr("text-anchor", "middle")
+        .text(proAxisName ? `${proAxisName} (axe X)` : "Axe X");
+
+      // Axe Y (à gauche, vertical)
+      g.append("text")
+        .attr("class", "axisTitle")
+        .attr("transform", `translate(${-78}, ${inner / 2}) rotate(-90)`)
+        .attr("text-anchor", "middle")
+        .text(socialAxisName ? `${socialAxisName} (axe Y)` : "Axe Y");
 
       const cell = g.selectAll(".cell")
         .data(hm.cells.map((d) => ({ ...d, hm })))
@@ -239,25 +264,21 @@ export class HeatmapRiskView {
     const rowLab = d.hm.labels[d.r];
     const colLab = d.hm.labels[d.c];
 
-  
-
     const socialName = d.hm.title.split("×")[0].trim();
     const proName = d.hm.title.split("×")[1].trim();
     const category = (d.mean >= 67) ? "protecteur" : (d.mean <= 33) ? "à risque" : "neutre";
 
-      selBox.innerHTML = `
+    selBox.innerHTML = `
       <p class="selLine">
-      <strong>Sélection :</strong><br/>
+        <strong>Sélection :</strong><br/>
         ${socialName} : ${rowLab}<br/>
         ${proName}: ${colLab}<br/>
-       
       </p>
     `;
 
     sentenceEl.textContent =
       `La combinaison observée aboutit à un happiness score de ${d.mean.toFixed(1)}, ` +
-      `signalant une situation ${category}.`
-
+      `signalant une situation ${category}.`;
 
     this._renderDist(d);
   }
@@ -268,7 +289,6 @@ export class HeatmapRiskView {
 
     const W = 360, H = 200;
 
-    // ✅ FIX: more left margin + balanced right margin -> no "shift"
     const margin = { top: 18, right: 22, bottom: 28, left: 46 };
     const w = W - margin.left - margin.right;
     const h = H - margin.top - margin.bottom;
@@ -288,7 +308,7 @@ export class HeatmapRiskView {
     const mean = d3.mean(scores);
 
     const x = d3.scaleLinear().domain([0, 100]).range([0, w]);
-    const targetBins = Math.max(22, Math.min(18, Math.round(w / 14))); // ~18-24 depending on width
+    const targetBins = Math.max(22, Math.min(18, Math.round(w / 14)));
     const bins = d3.bin().domain(x.domain()).thresholds(targetBins)(scores);
 
     const y = d3.scaleLinear()
@@ -303,7 +323,6 @@ export class HeatmapRiskView {
     const yAxis = g.append("g")
       .call(d3.axisLeft(y).ticks(4));
 
-    // Make axis text slightly bolder (JS side to ensure it applies)
     xAxis.selectAll("text").style("font-weight", 700);
     yAxis.selectAll("text").style("font-weight", 700);
 
@@ -319,7 +338,6 @@ export class HeatmapRiskView {
       .attr("rx", 10)
       .attr("ry", 10);
 
-    // Mean line
     const meanX = x(mean);
     g.append("line")
       .attr("x1", meanX)
@@ -329,14 +347,13 @@ export class HeatmapRiskView {
       .attr("stroke-width", 3)
       .attr("class", "meanLine");
 
-    // ✅ FIX: label is always inside plot and not "pushing" visually
     const padText = 8;
     const label = `moyenne ≈ ${mean.toFixed(1)}`;
 
     let anchor = "start";
     let textX = meanX + padText;
 
-    if (meanX > w - 85) { // near right edge
+    if (meanX > w - 85) {
       anchor = "end";
       textX = meanX - padText;
     }
