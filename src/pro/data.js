@@ -46,7 +46,7 @@ const links = [
   { source: "Lack of Managerial Support", target: "Social Isolation", value: 25 },
 
 
-  { source: "Job Insecurity", target: "Fear of Career Impact", value: 65 },
+  { source: "Job Insecurity", target: "Fear of Career Impact", value: 70 },
 
   { source: "Fear of Career Impact", target: "High Burnout Risk", value: 85 },
   { source: "Fear of Career Impact", target: "Moderate Burnout Risk", value: 30 },
