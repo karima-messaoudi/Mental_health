@@ -34,15 +34,17 @@ const links = [
   { source: "Large Company", target: "Poor Work-Life Balance", value: 50 },
   { source: "Small / Medium Company", target: "Job Insecurity", value: 60 },
 
-  { source: "High Workload", target: "Fear of Career Impact", value: 50 },
-  { source: "High Workload", target: "Seeks Support", value: 25 },
-  { source: "High Workload", target: "Social Isolation", value: 30 },
+  { source: "High Workload", target: "Fear of Career Impact", value: 45 },
+  { source: "High Workload", target: "Seeks Support", value: 20 },
+  { source: "High Workload", target: "Social Isolation", value: 25 },
+
 
   { source: "Poor Work-Life Balance", target: "Social Isolation", value: 45 },
-  { source: "Poor Work-Life Balance", target: "Seeks Support", value: 30 },
+  { source: "Poor Work-Life Balance", target: "Seeks Support", value: 35 },
 
-  { source: "Lack of Managerial Support", target: "Difficulty Talking to Manager", value: 55 },
-  { source: "Lack of Managerial Support", target: "Social Isolation", value: 30 },
+  { source: "Lack of Managerial Support", target: "Difficulty Talking to Manager", value: 45 },
+  { source: "Lack of Managerial Support", target: "Social Isolation", value: 25 },
+
 
   { source: "Job Insecurity", target: "Fear of Career Impact", value: 65 },
 
@@ -54,10 +56,11 @@ const links = [
 
   { source: "Seeks Support", target: "Low Burnout Risk", value: 55 },
 
-  { source: "Difficulty Talking to Manager", target: "Moderate Burnout Risk", value: 40 },
-  { source: "Difficulty Talking to Manager", target: "High Burnout Risk", value: 25 },
+  { source: "Difficulty Talking to Manager", target: "Moderate Burnout Risk", value: 30 },
+  { source: "Difficulty Talking to Manager", target: "High Burnout Risk", value: 15 },
 
-  { source: "Low Burnout Risk", target: "Healthy & Engaged", value: 50 },
+
+  { source: "Low Burnout Risk", target: "Healthy & Engaged", value: 55 },
 
   { source: "Moderate Burnout Risk", target: "Reduced Productivity", value: 55 },
   { source: "Moderate Burnout Risk", target: "Absenteeism", value: 30 },
